@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Agregar Gasto</h1>
+
+<form action="{{ url_for('agregar_gasto') }}" method="POST" class="row g-3 mb-5">
+    <div class="col-md-6">
+        <label for="descripcion" class="form-label">Descripción del Gasto</label>
+        <input type="text" id="descripcion" class="form-control" name="descripcion" required>
+    </div>
+    <div class="col-md-3">
+        <label for="valor" class="form-label">Valor ($)</label>
+        <input type="number" id="valor" class="form-control" name="valor" required>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-success w-100">Guardar Gasto</button>
+    </div>
+</form>
+
+<a href="{{ url_for('gastos') }}" class="btn btn-secondary">Volver al listado de gastos</a>
+{% endblock %}
+

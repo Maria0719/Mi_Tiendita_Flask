@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Gastos Registrados</h1>
+<a href="{{ url_for('agregar_gasto') }}" class="btn btn-primary mb-3">Agregar Gasto</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Valor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for gasto in gastos %}
+        <tr>
+            <td>{{ gasto.descripcion }}</td>
+            <td class="price-column">{{ gasto.valor | money }}</td>
+            <td>
+                <a href="{{ url_for('editar_gasto', id=gasto.id) }}" class="btn btn-action">Editar</a>
+                <form action="{{ url_for('eliminar_gasto', id=gasto.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de eliminar este gasto?');">
+                    <button class="btn btn-action">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="alert alert-info mt-4">
+    <strong>Total de Gastos:</strong> {{ total | money }}
+</div>
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al inicio</a>
+{% endblock %}

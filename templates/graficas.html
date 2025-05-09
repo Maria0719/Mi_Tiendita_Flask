@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">📊 Gráficas Financieras</h1>
+
+    <!-- Gráfica 1: Porcentaje de Ganancia por Producto -->
+    <div class="card mb-5 shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title text-center">Porcentaje de Ganancia por Producto</h4>
+            <div style="overflow-x:auto">
+                <img src="data:image/png;base64,{{ grafica1 }}" class="img-fluid mt-3" alt="Gráfica de ganancia por porcentaje" style="max-height: 500px;">
+            </div>
+            <p class="text-muted text-center mt-2">Representa el porcentaje de ganancia aplicado a cada producto.</p>
+        </div>
+    </div>
+
+    <!-- Gráfica 2: Ganancia Bruta vs Gastos vs Ganancia Neta -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title text-center">Resumen Financiero</h4>
+            <img src="data:image/png;base64,{{ grafica2 }}" class="img-fluid mt-3" alt="Gráfica de resumen financiero">
+            <p class="text-muted text-center mt-2">Ganancia bruta = Ingresos - Costos | Ganancia neta = Ganancia bruta - Gastos</p>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{{ url_for('index') }}" class="btn btn-primary">⬅ Volver al inicio</a>
+    </div>
+</div>
+{% endblock %}

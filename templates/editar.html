@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Editar Producto</h1>
+
+<form action="{{ url_for('editar', id=producto.id) }}" method="POST" class="row g-3 mb-5">
+    <div class="col-md-6">
+        <label for="nombre" class="form-label">Nombre del Producto</label>
+        <input type="text" id="nombre" class="form-control" name="nombre" value="{{ producto.nombre }}" required>
+    </div>
+    <div class="col-md-3">
+        <label for="precio_compra" class="form-label">Precio de Compra</label>
+        <input type="number" step="0.01" id="precio_compra" class="form-control" name="precio_compra" value="{{ producto.precio_compra }}" required>
+    </div>
+    <div class="col-md-3">
+        <label for="ganancia" class="form-label">Porcentaje de Ganancia (%)</label>
+        {% set ganancia_percent = ((producto.precio_venta - producto.precio_compra) / producto.precio_compra) * 100 %}
+        <input type="number" step="0.01" id="ganancia" class="form-control" name="ganancia" value="{{ ganancia_percent | round(2) }}" required>
+    </div>
+    <div class="col-md-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input type="number" id="stock" class="form-control" name="stock" value="{{ producto.stock }}" required>
+    </div>
+    <div class="col-md-6">
+        <label for="categoria" class="form-label">Categoría</label>
+        <input type="text" id="categoria" class="form-control" name="categoria" value="{{ producto.categoria }}">
+    </div>
+    <div class="col-md-6">
+        <button type="submit" class="btn btn-success w-100">Guardar Cambios</button>
+    </div>
+</form>
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Volver a la lista de productos</a>
+{% endblock %}

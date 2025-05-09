@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Resumen de Inventario</h1>
+
+<div class="alert alert-info">
+    <p><strong>Total de Valor de Compra: </strong>${{ "{:,.0f}".format(valor_compra_total or 0) }}</p>
+    <p><strong>Total de Valor de Venta: </strong>${{ "{:,.0f}".format(valor_venta_total or 0) }}</p>
+    <p><strong>Total de Gastos: </strong>${{ "{:,.0f}".format(total_gastos or 0) }}</p>
+    <hr>
+    <p><strong>Total de Ganancias (netas): </strong>${{ "{:,.0f}".format(ganancias_total or 0) }}</p>
+</div>
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Volver al inicio</a>
+{% endblock %}
